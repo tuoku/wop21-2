@@ -4,7 +4,9 @@ const app = express();
 const port = 3000;
 const cat = require('./routes/catRoute')
 const user = require('./routes/userRoute')
+const cors = require('cors')
 
+app.use(cors())
 app.use('/cat', cat)
 app.use('/user', user)
 

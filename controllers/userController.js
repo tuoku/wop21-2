@@ -17,6 +17,14 @@ function user_get(id,req,res) {
   }))
 }
 
+const user_post_new_user = async (req, res) => {
+  console.log('post user', req.body);
+  const user = req.body;
+  const userid = await userModel.insertUser(user);
+  user.id = userid;
+  res.json(user);
+};
+
 module.exports = {
   user_list_get,
   user_get,
