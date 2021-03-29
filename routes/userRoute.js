@@ -8,23 +8,14 @@ const urlencodedParser = parser.urlencoded({ extended: false })
 const multer  = require('multer')
 const upload = multer({ dest: './uploads/' })
 
-router.get('/', userController.user_list_get);
+router.route('/')
+  .get(userController.user_list_get)
+  .post(urlencodedParser, userController.user_create_post);
 
-router.get('/:id', function(req, res) {
-  userController.user_get(req.params.id,req,res)
-});
 
-router.post('/', urlencodedParser, (req, res) => {
-  console.log(req.body)
-  res.send(req.body)
-});
+router.route('/:id')
+  .get(userController.user_get);
 
-router.put('/', (req, res) => {
-  res.send('From this endpoint you can edit users.')
-});
 
-router.delete('/cat', (req, res) => {
-  res.send('From this endpoint you can delete users.');
-});
 
 module.exports = router;

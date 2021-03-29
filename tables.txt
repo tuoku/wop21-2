@@ -14,7 +14,7 @@ INSERT INTO `wop_cat` (`cat_id`, `name`, `age`, `weight`, `owner`, `filename`) V
 CREATE TABLE `wop_user` (
   `user_id` int(11) NOT NULL,
   `name` text NOT NULL,
-  `email` text NOT NULL,
+  `email` text NOT NULL,n
   `password` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
