@@ -24,7 +24,7 @@ router.put('/', (req, res) => {
 });
 
 router.delete('/cat', (req, res) => {
-  res.send('From this endpoint you can delete users.')
+  res.send('From this endpoint you can delete users.');
 });
 
 module.exports = router;
