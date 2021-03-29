@@ -12,7 +12,10 @@ router.route('/')
   .get(userController.user_list_get)
   .post(urlencodedParser, userController.user_create_post);
 
+
 router.route('/:id')
   .get(userController.user_get);
+
+
 
 module.exports = router;
