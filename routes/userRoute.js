@@ -31,6 +31,10 @@ router.route('/')
       }
     });
 
-router.route('/:id').get(userController.user_get);
+router.route('/:id')
+  .get(userController.user_get);
+
+
+
 
 module.exports = router;
