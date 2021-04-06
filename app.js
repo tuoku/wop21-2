@@ -9,6 +9,7 @@ const passport = require('./utils/pass')
 const authRoute = require('./routes/authRoute')
 
 app.use(cors())
+app.use('/thumbnails', express.static('thumbnails'));
 app.use('/auth', authRoute)
 app.use('/cat', passport.authenticate('jwt', {session: false}), cat)
 app.use('/user', passport.authenticate('jwt', {session: false}), user)
