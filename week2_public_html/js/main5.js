@@ -1,5 +1,5 @@
 'use strict';
-const url = 'http://localhost:3000'; // change url when uploading to server
+const url = 'https://10.114.32.108/app/'; // change url when uploading to server
 
 // select existing html elements
 const loginWrapper = document.querySelector('#login-wrapper');
@@ -29,7 +29,7 @@ const createCatCards = (cats) => {
 
     // open large image when clicking image
     img.addEventListener('click', () => {
-      modalImage.src = url + '/' + cat.filename;
+      modalImage.src = url + '/u' + cat.filename;
       imageModal.alt = cat.name;
       imageModal.classList.toggle('hide');
       try {
