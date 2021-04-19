@@ -11,16 +11,9 @@ const user_list_get = async (req, res) => {
   res.json(users);
 };
 
-const user_create_post = async (req, res) => {
-  console.log('post user', req.body);
-  const user = req.body;
-  const userid = await userModel.addUser(user);
-  user.id = userid;
-  res.json(user);
-};
+
 
 module.exports = {
   user_list_get,
   user_get,
-  user_create_post,
 };

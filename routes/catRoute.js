@@ -19,9 +19,14 @@ const fileFilter = (req, file, cb) =>{
   }
 }
 
+const filename = (req,file,cb) => {
+  cb(null, Date.now() + file.mimetype.split('/')[1])
+}
+
 const upload = multer({ dest: './uploads/', fileFilter: (req,file,cb) => {
   fileFilter(req,file,cb)
-  }})
+  }
+  })
 
 router.route('/')
   .get(catController.cat_list_get)

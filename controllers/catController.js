@@ -1,6 +1,8 @@
 'use strict';
 // catController
 const catModel = require('../models/catModel');
+const resize = require('../utils/resize');
+const imageMeta = require('../utils/imageMeta')
 
 const cat_get = async (req, res) => {
   const cat = await catModel.getCat(req.params.id)
@@ -14,14 +16,27 @@ const cat_list_get = async (req, res) => {
 
 const cat_create_post = async (req, res) => {
   console.log('post cat', req.body);
-  const cat = req.body;
-  const picture = req.file.destination + req.file.filename;
-  console.log(picture)
-  console.log(cat)
-  cat.filename = picture
-  const catid = await catModel.addCat(cat,picture);
-  cat.id = catid;
-  res.json(cat);
+  try {
+    await resize.makeThumbnail(req.file.path, req.file.filename)
+    const coords = await imageMeta.getCoordinates(req.file.path);
+    console.log('coords', coords);
+    const params = [
+      req.body.name,
+      req.body.age,
+      req.body.weight,
+      req.body.owner,
+      req.file.filename,
+      coords,
+    ];
+    const picture = req.file.destination + req.file.filename;
+    console.log(picture)
+    const cat = await catModel.addCat(params);
+    await res.json({message: 'upload ok'});
+  }
+  catch (e) {
+    console.log('exif error', e);
+    res.status(400).json({message: 'error'});
+  }
 };
 
 const cat_update_put = async (req, res) => {
